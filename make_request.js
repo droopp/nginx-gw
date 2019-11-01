@@ -1,20 +1,17 @@
 
 
-function makeRequest2(r) {
-    _makeRequest(r, 2);
-};
+function makeRequest(r) {
 
-function makeRequest3(r) {
-    _makeRequest(r, 3);
-};
-
-function _makeRequest(r, index) {
-
-    var func = r.uri.split("/")[index];
+    var func;
     var hs = {};
     var h, rs, res_code, res_body;
     
-
+    if (r.uri.search("^/api/(v.|v.\..)/") == 0){
+    	func = r.uri.split("/")[3];
+    }else{
+        func = r.uri.split("/")[2];
+    };
+ 
     for (h in r.headersIn) {
         hs[h] = r.headersIn[h];
     };
@@ -61,7 +58,7 @@ function _makeRequest(r, index) {
        r.return(res_code, res_body);
     };
 
-    r.subrequest('/api/v1/' + func, { method: 'POST', body: JSON.stringify(data)} , done);
+    r.subrequest('/internal/api/v1/' + func, { method: 'POST', body: JSON.stringify(data)} , done);
 
 }
 
