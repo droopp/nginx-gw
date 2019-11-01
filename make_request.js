@@ -39,6 +39,9 @@ function makeRequest(r) {
     };
  
     function done(res) {
+ 
+
+       //r.return(res.status, res.responseBody);
 
        if (res.status == 200){
            rs = JSON.parse(res.responseBody);
@@ -56,6 +59,8 @@ function makeRequest(r) {
        };
 
        r.return(res_code, res_body);
+
+
     };
 
     r.subrequest('/internal/api/v1/' + func, { method: 'POST', body: JSON.stringify(data)} , done);
