@@ -40,13 +40,12 @@ function makeRequest(r) {
  
     function done(res) {
  
-
        //r.return(res.status, res.responseBody);
 
        if (res.status == 200){
            rs = JSON.parse(res.responseBody);
-           res_code = rs.response_code;
-           res_body = rs.response_body;
+           res_code = rs.r_code;
+           res_body = rs.r_body;
 
            if (res_code==undefined){
               res_code = res.status;
