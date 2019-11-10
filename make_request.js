@@ -43,16 +43,18 @@ function makeRequest(r) {
        //r.return(res.status, res.responseBody);
 
        if (res.status == 200){
-           rs = JSON.parse(res.responseBody);
-           res_code = rs.r_code;
-           res_body = rs.r_body;
 
-           if (res_code==undefined){
+           if (res.responseBody.indexOf("\"res_code\":") == -1){
               res_code = res.status;
               res_body = res.responseBody;
+
+           }else{
+              rs = JSON.parse(res.responseBody);
+              res_code = rs.r_code;
+              res_body = rs.r_body;
            };
 
-       }else {
+       }else{
            res_code = res.status;
            res_body = res.responseBody;
        };
