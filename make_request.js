@@ -44,14 +44,14 @@ function makeRequest(r) {
 
        if (res.status == 200){
 
-           if (res.responseBody.indexOf("\"res_code\":") == -1){
+           if (res.responseBody.indexOf("x_res_code") == -1){
               res_code = res.status;
               res_body = res.responseBody;
 
            }else{
               rs = JSON.parse(res.responseBody);
-              res_code = rs.r_code;
-              res_body = rs.r_body;
+              res_code = rs.x_res_code;
+              res_body = rs.x_res_body;
            };
 
        }else{
